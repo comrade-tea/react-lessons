@@ -5,12 +5,14 @@ import PropTypes from 'prop-types';
 
 
 class Article extends Component {
-	static propTypes = {
+	/*static propTypes = {
 		article: PropTypes.shape({
 			title: PropTypes.string.isRequired,
 			text: PropTypes.string
 		}).isRequired
-	}
+	}*/
+
+	/*props: {}*/
 
 	render() {
 		// console.log("---", this.props);

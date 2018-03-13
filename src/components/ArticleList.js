@@ -3,6 +3,7 @@ import Article from "./Article"
 // import {articles} from './fixtures'
 
 export default function ArticleList({articles}) {
+	// получу wrappedArticle
 	const articleElements = articles.map(item => <li key={item.id}><Article article={item}/></li>);
 
 	return (
