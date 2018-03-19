@@ -13,6 +13,10 @@ class Article extends Component {
 	}*/
 
 	/*props: {}*/
+	
+	/*componentWillReceiveProps(nextProps) {
+		console.log("---", this.props.isOpen, nextProps.isOpen)
+	}*/
 
 	render() {
 		// console.log("---", this.props);
@@ -20,7 +24,7 @@ class Article extends Component {
 		const {article, isOpen, toggleOpen} = this.props;
 
 		return (
-			<div>
+			<div ref={(node) => console.log(node)}>
 				<h1>{article.title}</h1>
 				<button onClick={toggleOpen}>{isOpen ? "close" : "open"} info</button>
 				{this.getBody()}

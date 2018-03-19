@@ -22,7 +22,7 @@ let group = {
 	}
 }*/
 
-let lol = (...args) => {
+/*let lol = (...args) => {
 	let ninja = {
 		val1: "value1",
 		val2: "value2",
@@ -30,8 +30,8 @@ let lol = (...args) => {
 	// console.log(args);
 	// console.log(...args);
 	// console.log(...ninja);
-};
+};*/
 
-lol(1, 2, 3);
+// lol(1, 2, 3);
 
 // render(React.createElement(ArticleList, { articles: articles }), document.getElementById('container'));
