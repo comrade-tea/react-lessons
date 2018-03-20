@@ -1,14 +1,40 @@
-import React from "react"
+import React, {Component} from "react"
 import Article from "./Article"
+import accordion from "../decorators/accordion"
+import PropTypes from 'prop-types';
 // import {articles} from './fixtures'
 
-export default function ArticleList({articles}) {
-	// получу wrappedArticle
-	const articleElements = articles.map(item => <li key={item.id}><Article article={item}/></li>);
+class ArticleList extends Component {
 
-	return (
-		<ul>
-			{articleElements}
-		</ul>
-	)
+	static propTypes = {
+		articles: PropTypes.array.isRequired,
+		openItemId: PropTypes.string,
+		toggleOpen: PropTypes.func.isRequired
+	}
+
+	render() {
+		const {articles, openItemId, toggleOpen} = this.props;
+		// console.log("----", toggleOpen);
+
+		const articleElements = articles.map(item => {
+			return (
+				<li key={item.id}>
+					{/*// получу wrappedArticle*/}
+					<Article
+						article={item}
+						isOpen={item.id === openItemId}
+						// toggleOpen={toggleOpen.bind(this, item.id)}
+						toggleOpen={() => toggleOpen(item.id)}
+					/>
+				</li>)
+		});
+
+		return (
+			<ul>
+				{articleElements}
+			</ul>
+		)
+	}
 }
+
+export default accordion(ArticleList);

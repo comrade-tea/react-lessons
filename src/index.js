@@ -1,13 +1,32 @@
 import React from 'react'
 import {render} from 'react-dom'
-import ArticleList from './components/ArticleList'
+import App from './components/App'
 import {articles} from './fixtures'
 // import Root from './components/Root'
 
 // const article = articles[0];
 // console.log(article);
 
-render(<ArticleList articles={articles}/>, document.getElementById('container'));
+render(<App articles={articles}/>, document.getElementById('container'));
+
+/*const ninja = (openArticleId) => {
+	// this.setState({openArticleId});
+	console.log("----", {openArticleId});
+}*/
+
+// ninja({lol: "adsfasf"});
+
+/*class ninja {
+	toggleOpen(openItemId) {
+		console.log(this);
+	}
+	toggleOpen2 = (openItemId) => {
+		console.log(this);
+	}
+}
+
+new ninja().toggleOpen();
+new ninja().toggleOpen2();*/
 
 /*
 let group = {

@@ -4,6 +4,10 @@ import toggleOpen from '../decorators/toggleOpen';
 import PropTypes from 'prop-types';
 
 class CommentList extends Component {
+	static propTypes = {
+		comments: PropTypes.array.isRequired
+	}
+
 	render() {
 		const {comments, toggleOpen} = this.props;
 
