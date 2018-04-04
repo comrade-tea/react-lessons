@@ -8,6 +8,10 @@ class CommentList extends Component {
 		comments: PropTypes.array.isRequired
 	}
 
+	componentWillUnmount() {
+		console.log("----", "commentList will unmount bitch!");
+	}
+
 	render() {
 		const {comments, toggleOpen} = this.props;
 
@@ -19,6 +23,10 @@ class CommentList extends Component {
 		);
 	}
 
+	componentDidMount() {
+		console.log("----", "did mount...");
+	}
+
 	getBody() {
 		const {comments} = this.props
 		if (!this.props.isOpen)
@@ -27,14 +35,7 @@ class CommentList extends Component {
 			return <div><i>there is no comments yet!</i></div>
 
 		const commentsElements = comments.map(item => {
-
 			return <li key={item.id}><Comment comment={item}/></li>;
-			// return (
-			// 	<li key={item.id}>
-			// 		<h3>{item.user}</h3>
-			// 		<h3>{item.text}</h3>
-			// 	</li>
-			// )
 		})
 
 		return (

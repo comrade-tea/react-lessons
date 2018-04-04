@@ -13,15 +13,8 @@ class Article extends Component {
 		}).isRequired
 	}
 
-	/*componentWillReceiveProps(nextProps) {
-		console.log("---", this.props.isOpen, nextProps.isOpen)
-	}*/
-
-	componentWillMount() {
-		// console.log(this.props.toggleOpen);
-	}
-
 	render() {
+
 		const {article, isOpen, toggleOpen} = this.props;
 
 		return (
