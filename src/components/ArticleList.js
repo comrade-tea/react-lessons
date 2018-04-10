@@ -12,6 +12,10 @@ class ArticleList extends Component {
 		toggleOpen: PropTypes.func.isRequired
 	}
 
+	componentDidUpdate() {
+		console.log("----", "updateee");
+	}
+
 	render() {
 		const {articles, openItemId, toggleOpen} = this.props;
 		// console.log("----", toggleOpen);

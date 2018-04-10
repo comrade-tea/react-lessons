@@ -2,10 +2,15 @@ import React, {Component} from 'react';
 import Comment from './Comment';
 import toggleOpen from '../decorators/toggleOpen';
 import PropTypes from 'prop-types';
+import UserForm from './UserForm';
 
 class CommentList extends Component {
 	static propTypes = {
 		comments: PropTypes.array.isRequired
+	}
+
+	componentWillUnmount() {
+		console.log("----", "commentList will unmount bitch!");
 	}
 
 	render() {
@@ -19,6 +24,10 @@ class CommentList extends Component {
 		);
 	}
 
+	componentDidMount() {
+		// console.log("----", "did mount...");
+	}
+
 	getBody() {
 		const {comments} = this.props
 		if (!this.props.isOpen)
@@ -27,20 +36,17 @@ class CommentList extends Component {
 			return <div><i>there is no comments yet!</i></div>
 
 		const commentsElements = comments.map(item => {
-
 			return <li key={item.id}><Comment comment={item}/></li>;
-			// return (
-			// 	<li key={item.id}>
-			// 		<h3>{item.user}</h3>
-			// 		<h3>{item.text}</h3>
-			// 	</li>
-			// )
 		})
 
 		return (
-			<ul>
-				{commentsElements}
-			</ul>
+			<div>
+				<ul>
+					{commentsElements}
+				</ul>
+
+				<UserForm/>
+			</div>
 		)
 	}
 }

@@ -2,7 +2,9 @@ import React, {Component} from "react"
 import ReactDOM from "react-dom"
 import CommentList from "./CommentList"
 import toggleOpen from "../decorators/toggleOpen"
+import { CSSTransitionGroup } from 'react-transition-group'
 import PropTypes from 'prop-types';
+import './article.css';
 
 
 class Article extends Component {
@@ -13,22 +15,21 @@ class Article extends Component {
 		}).isRequired
 	}
 
-	/*componentWillReceiveProps(nextProps) {
-		console.log("---", this.props.isOpen, nextProps.isOpen)
-	}*/
-
-	componentWillMount() {
-		// console.log(this.props.toggleOpen);
-	}
-
 	render() {
+
 		const {article, isOpen, toggleOpen} = this.props;
 
 		return (
 			<div>
 				<h1>{article.title}</h1>
 				<button onClick={toggleOpen}>{isOpen ? "close" : "open"} info</button>
-				{this.getBody()}
+
+				<CSSTransitionGroup
+					transitionName="example"
+					transitionEnterTimeout={300}
+					transitionLeaveTimeout={300}>
+					{this.getBody()}
+				</CSSTransitionGroup>
 			</div>
 		)
 	}
@@ -39,10 +40,10 @@ class Article extends Component {
 			return null;
 
 		return (
-			<div>
+			<section>
 				<div>{article.text}</div>
 				<CommentList comments={article.comments}/>
-			</div>
+			</section>
 		)
 	}
 }

@@ -5,6 +5,7 @@ export default (OriginalComponent) => class WrappedComponent extends ReactCompon
 	// jsx синтакс передачи пропс объекта {...this.props} === <lol article = {this.data1} info = {this.data2}/> кароч просто спредид объект и передает отдельные поля
 
 	state = {
+		dynamicKey: 0,
 		isOpen: false,
 	}
 
@@ -17,6 +18,14 @@ export default (OriginalComponent) => class WrappedComponent extends ReactCompon
 	render() {
 		// console.log(this);
 		// console.log({...this.props});
-		return <OriginalComponent {...this.props} isOpen = {this.state.isOpen} toggleOpen={this.toggleOpen}/>
+		// console.log("----", this.state.dynamicKey)
+
+		return (
+			<section>
+				{/*<button onClick={() => {this.setState({dynamicKey: this.state.dynamicKey+=1})}}>update..</button>*/}
+				<OriginalComponent {...this.props} isOpen = {this.state.isOpen} toggleOpen={this.toggleOpen}/>
+			</section>
+		)
 	}
+
 }
