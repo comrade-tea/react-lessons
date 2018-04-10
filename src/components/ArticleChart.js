@@ -16,11 +16,19 @@ class ArticleChart extends Component {
 	}
 	componentDidMount() {
 		// можем работать с dom элементом this.refs.chart
+<<<<<<< HEAD
 		// console.log("----", this.refs)
 	}
 
 	setContainerRef = (el) => {
 		// console.log("----", el);
+=======
+		console.log("----", this.refs)
+	}
+
+	setContainerRef = (el) => {
+		console.log("----", el);
+>>>>>>> 993b8cdfa1531b1705462100d74c0ae25362f491
 	}
 }
 

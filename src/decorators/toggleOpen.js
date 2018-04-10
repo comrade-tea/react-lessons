@@ -18,12 +18,20 @@ export default (OriginalComponent) => class WrappedComponent extends ReactCompon
 	render() {
 		// console.log(this);
 		// console.log({...this.props});
+<<<<<<< HEAD
 		// console.log("----", this.state.dynamicKey)
 
 		return (
 			<section>
 				{/*<button onClick={() => {this.setState({dynamicKey: this.state.dynamicKey+=1})}}>update..</button>*/}
 				<OriginalComponent {...this.props} isOpen = {this.state.isOpen} toggleOpen={this.toggleOpen}/>
+=======
+		console.log("----", this.state.dynamicKey)
+		return (
+			<section>
+				<button onClick={() => {this.setState({dynamicKey: this.state.dynamicKey+=1})}}>update..</button>
+				<OriginalComponent {...this.props} isOpen = {this.state.isOpen} toggleOpen={this.toggleOpen} key={this.state.dynamicKey}/>
+>>>>>>> 993b8cdfa1531b1705462100d74c0ae25362f491
 			</section>
 		)
 	}

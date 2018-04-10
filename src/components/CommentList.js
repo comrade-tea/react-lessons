@@ -25,7 +25,11 @@ class CommentList extends Component {
 	}
 
 	componentDidMount() {
+<<<<<<< HEAD
 		// console.log("----", "did mount...");
+=======
+		console.log("----", "did mount...");
+>>>>>>> 993b8cdfa1531b1705462100d74c0ae25362f491
 	}
 
 	getBody() {
