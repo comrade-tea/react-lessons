@@ -1,35 +1,23 @@
 import React, {Component} from 'react';
-<<<<<<< HEAD
 import "./userform.css"
-=======
->>>>>>> 993b8cdfa1531b1705462100d74c0ae25362f491
 import PropTypes from 'prop-types';
 
 class UserForm extends Component {
 
 	state = {
-<<<<<<< HEAD
 		userName: "",
 		userText: ""
-=======
-		userName: ""
->>>>>>> 993b8cdfa1531b1705462100d74c0ae25362f491
 	}
 
 	render() {
 		return (
 			<div>
-<<<<<<< HEAD
 				Name: <input type="text" ref="userName" id="userName" value={this.state.userName} onChange={this.handleChange}/>
 				Text: <textarea type="text" ref="userText" id="userText" value={this.state.userText} onChange={this.handleChange}/>
-=======
-				Name: <input type="text" value={this.state.userName} onChange={this.handleUserChange}/>
->>>>>>> 993b8cdfa1531b1705462100d74c0ae25362f491
 			</div>
 		);
 	}
 
-<<<<<<< HEAD
 	handleChange = (ev) => {
 		let field = ev.target.id;
 
@@ -69,13 +57,6 @@ class UserForm extends Component {
 		else {
 			domEl.classList.remove("input-error");
 		}
-=======
-	handleUserChange = (ev) => {
-		this.setState({
-			userName: ev.target.value
-		});
-		console.log(ev.target.value);
->>>>>>> 993b8cdfa1531b1705462100d74c0ae25362f491
 	}
 }
 
