@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import Comment from './Comment';
 import toggleOpen from '../decorators/toggleOpen';
 import PropTypes from 'prop-types';
+import UserForm from './UserForm';
 
 class CommentList extends Component {
 	static propTypes = {
@@ -24,7 +25,7 @@ class CommentList extends Component {
 	}
 
 	componentDidMount() {
-		console.log("----", "did mount...");
+		// console.log("----", "did mount...");
 	}
 
 	getBody() {
@@ -39,9 +40,13 @@ class CommentList extends Component {
 		})
 
 		return (
-			<ul>
-				{commentsElements}
-			</ul>
+			<div>
+				<ul>
+					{commentsElements}
+				</ul>
+
+				<UserForm/>
+			</div>
 		)
 	}
 }

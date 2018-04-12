@@ -5,7 +5,7 @@ export default (OriginalComponent) => class Accordion extends ReactComponent {
 	// jsx синтакс передачи пропс объекта {...this.props} === <lol article = {this.data1} info = {this.data2}/> кароч просто спредид объект и передает отдельные поля
 
 	state = {
-		openItemId: null
+		openItemId: this.props.defaultItemId
 	}
 
 	toggleOpen = (openItemId) => {

@@ -16,11 +16,12 @@ class ArticleChart extends Component {
 	}
 	componentDidMount() {
 		// можем работать с dom элементом this.refs.chart
-		console.log("----", this.refs)
+		// console.log("----", this.refs)
 	}
 
 	setContainerRef = (el) => {
-		console.log("----", el);
+		// console.log("----", el);
+		console.log("----", this.refs)
 	}
 }
 

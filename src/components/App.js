@@ -1,11 +1,10 @@
 import React, {Component} from 'react';
 import ArticleList from "./ArticleList"
 import ArticleChart from "./ArticleChart"
-import UserForm from "./UserForm";
 import Select from "react-select";
-import 'react-select/dist/react-select.css';
+// @ react-date-picker
+import DatePicker from "./DatePicker"
 
-import {articles} from "../fixtures";
 
 class App extends Component {
 
@@ -14,16 +13,21 @@ class App extends Component {
 	}
 
 	render() {
-		const options = this.props.articles.map(item => ({
+		const {articles} = this.props;
+
+
+		const options = articles.map(item => ({
 			label: item.title,
 			value: item.id
 		}));
 
 		return (
 			<div>
-				<UserForm/>
-				<Select options={options} onChange={this.changeSelection} value={this.state.selection}/>
-				<ArticleList articles={this.props.articles}/>
+				{/*<UserForm/>*/}
+				{/*<Select options={options} onChange={this.changeSelection} value={this.state.selection}/>*/}
+
+				<DatePicker/>
+				<ArticleList articles={this.props.articles} defaultItemId={articles[0].id}/>
 				<ArticleChart articles={this.props.articles}/>
 			</div>
 		);
