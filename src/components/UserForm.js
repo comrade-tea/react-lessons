@@ -5,58 +5,46 @@ import PropTypes from 'prop-types';
 class UserForm extends Component {
 
 	state = {
-		userName: "",
-		userText: ""
+		name: "",
+		text: ""
+	}
+
+	limiters = {
+		name: {
+			min: 5,
+			max: 15
+		},
+		text: {
+			min: 10,
+			max: 20
+		}
 	}
 
 	render() {
 		return (
 			<div>
-				Name: <input type="text" ref="userName" id="userName" value={this.state.userName} onChange={this.handleChange}/>
-				Text: <textarea type="text" ref="userText" id="userText" value={this.state.userText} onChange={this.handleChange}/>
+				Name: <input type="text" value={this.state.name}
+				             className={this.getClassName("name")}
+				             onChange={this.handleChange("name")}/>
+
+				Text: <input type="text" value={this.state.text}
+				             className={this.getClassName("text")}
+				             onChange={this.handleChange("text")}/>
 			</div>
 		);
 	}
 
-	handleChange = (ev) => {
-		let field = ev.target.id;
-
+	handleChange = type => ev => {
 		this.setState({
-			[field]: ev.target.value
+			[type]: ev.target.value
 		});
 	}
 
-	componentDidUpdate(prevProps, {userName: prevUserName, userText: prevUserText}) {
-		const {userName, userText} = this.state;
+	getClassName = (type) => {
+		const limit = this.limiters[type];
+		const currentLength = this.state[type].length;
 
-		if (prevUserName !== userName) {
-			this.validateName(this.refs.userName);
-		}
-		if (prevUserText !== userText) {
-			this.validateText(this.refs.userText);
-		}
-	}
-
-	validateName(domEl) {
-		let valueLength = this.state.userName.length;
-
-		if (valueLength < 5 || valueLength >= 15) {
-			domEl.classList.add("input-error");
-		}
-		else {
-			domEl.classList.remove("input-error");
-		}
-	}
-
-	validateText(domEl) {
-		let valueLength = this.state.userText.length;
-
-		if (valueLength < 20 || valueLength >= 50) {
-			domEl.classList.add("input-error");
-		}
-		else {
-			domEl.classList.remove("input-error");
-		}
+		return limit.min > currentLength || currentLength > limit.max ? "input-error" : ""
 	}
 }
 
