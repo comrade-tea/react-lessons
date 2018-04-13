@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import ArticleList from "./ArticleList"
 import ArticleChart from "./ArticleChart"
 import Filters from "./Filters"
+import Counter from "./Counter"
 
 
 

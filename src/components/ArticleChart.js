@@ -21,7 +21,6 @@ class ArticleChart extends Component {
 
 	setContainerRef = (el) => {
 		// console.log("----", el);
-		console.log("----", this.refs)
 	}
 }
 
