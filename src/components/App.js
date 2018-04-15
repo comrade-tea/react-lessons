@@ -4,22 +4,15 @@ import ArticleChart from "./ArticleChart"
 import Filters from "./Filters"
 import Counter from "./Counter"
 
-
-
-
 class App extends Component {
 
-
-
 	render() {
-		const {articles} = this.props;
-
 		return (
 			<div>
-				<Filters articles={articles}/>
+				<Counter />
 
-				<ArticleList articles={this.props.articles} defaultItemId={articles[0].id}/>
-				<ArticleChart articles={this.props.articles}/>
+				<Filters articles={[]}/>
+				<ArticleList/>
 			</div>
 		);
 	}

@@ -1,8 +1,8 @@
 import React, {Component} from "react"
-import Article from "./Article"
+import Article from "./Article/Article"
 import accordion from "../decorators/accordion"
 import PropTypes from 'prop-types';
-// import {articles} from './fixtures'
+import {connect} from 'react-redux'
 
 class ArticleList extends Component {
 
@@ -12,13 +12,8 @@ class ArticleList extends Component {
 		toggleOpen: PropTypes.func.isRequired
 	}
 
-	componentDidUpdate() {
-		console.log("----", "updateee");
-	}
-
 	render() {
 		const {articles, openItemId, toggleOpen} = this.props;
-		// console.log("----", toggleOpen);
 
 		const articleElements = articles.map(item => {
 			return (
@@ -41,4 +36,6 @@ class ArticleList extends Component {
 	}
 }
 
-export default accordion(ArticleList);
+export default connect((state) => ({
+	articles: state.articles
+}))(accordion(ArticleList));
