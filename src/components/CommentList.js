@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import Comment from './Comment';
 import toggleOpen from '../decorators/toggleOpen';
 import PropTypes from 'prop-types';
-import UserForm from './UserForm';
+import UserForm from './UserForm/UserForm';
 
 class CommentList extends Component {
 	static propTypes = {

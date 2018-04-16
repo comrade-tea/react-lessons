@@ -1,16 +1,14 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import SelectFilter from "./SelectFilter";
-
-// @ react-date-picker
 import DatePicker from "./DatePicker"
+//@ redux
+import {connect} from "react-redux"
+
 
 class Filters extends Component {
-
-
 	render() {
-
-
+		console.log("----", this.props);
 
 		return (
 			<div>
@@ -20,10 +18,10 @@ class Filters extends Component {
 			</div>
 		);
 	}
-
-
 }
 
 Filters.propTypes = {};
 
-export default Filters;
+export default connect((store) => ({
+	articles: store.articles
+}))(Filters);

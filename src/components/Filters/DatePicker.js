@@ -1,35 +1,44 @@
 import React from 'react';
 import Helmet from 'react-helmet';
-import DayPicker, { DateUtils } from 'react-day-picker';
+import DayPicker, {DateUtils} from 'react-day-picker';
 import 'react-day-picker/lib/style.css';
 import 'react-select/dist/react-select.css';
+// @redux-connect
+import {connect} from 'react-redux'
+import {changeDate} from '../../AC'
 
-export default class DatePicker extends React.Component {
+class DatePicker extends React.Component {
 	static defaultProps = {
 		numberOfMonths: 2,
 	};
+
 	constructor(props) {
 		super(props);
 		this.handleDayClick = this.handleDayClick.bind(this);
 		this.handleResetClick = this.handleResetClick.bind(this);
-		this.state = this.getInitialState();
 	}
+
 	getInitialState() {
 		return {
 			from: undefined,
 			to: undefined,
 		};
 	}
+
 	handleDayClick(day) {
-		const range = DateUtils.addDayToRange(day, this.state);
-		this.setState(range);
+		const {datePickerState, changeDate} = this.props;
+		const range = DateUtils.addDayToRange(day, datePickerState);
+
+		changeDate(range);
 	}
+
 	handleResetClick() {
-		this.setState(this.getInitialState());
+		changeDate(this.getInitialState());
 	}
+
 	render() {
-		const { from, to } = this.state;
-		const modifiers = { start: from, end: to };
+		const {from, to} = this.props.datePickerState;
+		const modifiers = {start: from, end: to};
 		return (
 			<div className="RangeExample">
 				<p>
@@ -49,7 +58,7 @@ export default class DatePicker extends React.Component {
 				<DayPicker
 					className="Selectable"
 					numberOfMonths={this.props.numberOfMonths}
-					selectedDays={[from, { from, to }]}
+					selectedDays={[from, {from, to}]}
 					modifiers={modifiers}
 					onDayClick={this.handleDayClick}
 				/>
@@ -76,3 +85,7 @@ export default class DatePicker extends React.Component {
 		);
 	}
 }
+
+export default connect((state) => ({
+	datePickerState: state.datepicker
+}), {changeDate})(DatePicker)

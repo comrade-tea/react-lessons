@@ -1,9 +1,8 @@
 import {INCREMENT} from "../constants";
 
-
 export default (count = 0, action) => {
-	console.log("---", "counterReducer says hello!!!");
-	console.log("---", count);
+	// console.log("---", "counterReducer says hello!!!");
+	// console.log("---", count);
 	const {type} = action;
 
 	switch (type) {

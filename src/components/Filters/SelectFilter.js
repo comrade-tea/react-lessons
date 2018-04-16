@@ -1,11 +1,15 @@
 import React, {Component} from 'react';
 import Select from "react-select";
 import PropTypes from 'prop-types';
+// @@ redux
+import {changeFilter} from "../../AC"
+import {connect} from 'react-redux';
+
 
 class SelectFilter extends Component {
-	state = {
+	/*state = {
 		selection: null
-	}
+	}*/
 
 	render() {
 		const {articles} = this.props;
@@ -16,16 +20,18 @@ class SelectFilter extends Component {
 
 		return (
 			<div>
-				<Select options={options} onChange={this.changeSelection} value={this.state.selection}/>
+				<Select multi options={options} onChange={this.changeSelection} value={this.props.select}/>
 			</div>
 		);
 	}
 
 	changeSelection = selection => {
-		this.setState({selection});
+		// this.setState({selection});
+		const {changeFilter} = this.props;
+		changeFilter(selection);
 	}
 }
 
-SelectFilter.propTypes = {};
-
-export default SelectFilter;
+export default connect((store) => ({
+	select: store.select
+}), {changeFilter})(SelectFilter);
