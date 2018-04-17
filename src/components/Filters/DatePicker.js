@@ -1,35 +1,49 @@
 import React from 'react';
 import Helmet from 'react-helmet';
-import DayPicker, { DateUtils } from 'react-day-picker';
+import DayPicker, {DateUtils} from 'react-day-picker';
 import 'react-day-picker/lib/style.css';
 import 'react-select/dist/react-select.css';
 
-export default class DatePicker extends React.Component {
+import {connect} from "react-redux";
+import {changeDateRange} from "../../AC";
+
+
+class DatePicker extends React.Component {
 	static defaultProps = {
 		numberOfMonths: 2,
 	};
+
 	constructor(props) {
 		super(props);
 		this.handleDayClick = this.handleDayClick.bind(this);
 		this.handleResetClick = this.handleResetClick.bind(this);
-		this.state = this.getInitialState();
+		// this.state = DatePicker.getInitialState();
 	}
-	getInitialState() {
+
+	static getInitialState() {
 		return {
 			from: undefined,
 			to: undefined,
 		};
 	}
+
 	handleDayClick(day) {
-		const range = DateUtils.addDayToRange(day, this.state);
-		this.setState(range);
+		const {changeDateRange} = this.props;
+		// const range = DateUtils.addDayToRange(day, this.state);
+		const range = DateUtils.addDayToRange(day, this.props.filters.dateRange);
+		// this.setState(range);
+		changeDateRange(range);
 	}
+
 	handleResetClick() {
-		this.setState(this.getInitialState());
+		const {changeDateRange} = this.props;
+
+		changeDateRange(DatePicker.getInitialState());
 	}
+
 	render() {
-		const { from, to } = this.state;
-		const modifiers = { start: from, end: to };
+		const {from, to} = this.props.filters.dateRange;
+		const modifiers = {start: from, end: to};
 		return (
 			<div className="RangeExample">
 				<p>
@@ -49,7 +63,7 @@ export default class DatePicker extends React.Component {
 				<DayPicker
 					className="Selectable"
 					numberOfMonths={this.props.numberOfMonths}
-					selectedDays={[from, { from, to }]}
+					selectedDays={[from, {from, to}]}
 					modifiers={modifiers}
 					onDayClick={this.handleDayClick}
 				/>
@@ -76,3 +90,7 @@ export default class DatePicker extends React.Component {
 		);
 	}
 }
+
+export default connect(({filters}) => {
+	return {filters}
+}, {changeDateRange})(DatePicker);

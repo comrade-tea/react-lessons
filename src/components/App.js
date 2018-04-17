@@ -9,16 +9,14 @@ class App extends Component {
 	render() {
 		return (
 			<div>
-				<Counter />
+				{/*<Counter />*/}
 
 				<Filters articles={[]}/>
 				<ArticleList/>
 			</div>
 		);
 	}
-
-
-
 }
+
 
 export default App;

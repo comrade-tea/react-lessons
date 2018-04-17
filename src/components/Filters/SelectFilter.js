@@ -2,13 +2,17 @@ import React, {Component} from 'react';
 import Select from "react-select";
 import PropTypes from 'prop-types';
 
+import {connect} from "react-redux";
+import {changeSelect} from "../../AC";
+
+
 class SelectFilter extends Component {
-	state = {
+	/*state = {
 		selection: null
-	}
+	}*/
 
 	render() {
-		const {articles} = this.props;
+		const {articles, selection} = this.props;
 		const options = articles.map(item => ({
 			label: item.title,
 			value: item.id
@@ -16,16 +20,19 @@ class SelectFilter extends Component {
 
 		return (
 			<div>
-				<Select options={options} onChange={this.changeSelection} value={this.state.selection}/>
+				<Select multi options={options} onChange={this.changeSelection} value={selection}/>
 			</div>
 		);
 	}
 
-	changeSelection = selection => {
-		this.setState({selection});
-	}
+	changeSelection = selection => {this.props.changeSelect(selection.map((option) => option.value))}
 }
 
-SelectFilter.propTypes = {};
+// SelectFilter.propTypes = {};
 
-export default SelectFilter;
+export default connect(({articles, filters}) => {
+	return {
+		articles,
+		selection: filters.select,
+	}
+}, {changeSelect})(SelectFilter);
