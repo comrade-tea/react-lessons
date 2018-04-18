@@ -41,7 +41,6 @@ class ArticleList extends Component {
 }
 
 export default connect((state) => {
-	console.log("----", "update connect");
 	return {
 		articles: filtratedArticlesSelector(state)
 	}

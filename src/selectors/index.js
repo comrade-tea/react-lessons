@@ -2,10 +2,10 @@ import {createSelector} from "reselect";
 
 const filtersGetter = state => state.filters
 const articlesGetter = state => state.articles
+const commentsGetter = state => state.comments
+const idGetter = (state, props) => props.id
 
 export const filtratedArticlesSelector = createSelector(articlesGetter, filtersGetter, (articles, filters) => {
-	console.log("----", "recomputing");
-	console.log("----", articles, filters);
 	const {select, dateRange: {from, to}} = filters;
 
 	return articles.filter(article => {
@@ -15,14 +15,8 @@ export const filtratedArticlesSelector = createSelector(articlesGetter, filtersG
 	});
 })
 
-/*
-export function filtrateArticles({articles, filters}) {
-	const {select, dateRange: {from, to}} = filters;
+export const commentSelectorFactory = () => createSelector(commentsGetter, idGetter, (comments, id) => {
+	console.log("----", comments, id);
 
-	return articles.filter(article => {
-		const published = Date.parse(article.date);
-
-		return (!select.length || select.includes(article.id)) && (!from || !to || (published > from && published < to))
-	});
-}
-*/
+	return comments.find(comment => comment.id === id)
+})
